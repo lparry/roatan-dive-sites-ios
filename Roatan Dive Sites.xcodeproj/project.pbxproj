@@ -14,6 +14,20 @@
 		4381248E1AAFF21F00CDC397 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4381248D1AAFF21F00CDC397 /* Images.xcassets */; };
 		438124911AAFF21F00CDC397 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4381248F1AAFF21F00CDC397 /* LaunchScreen.xib */; };
 		4381249D1AAFF21F00CDC397 /* Roatan_Dive_SitesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4381249C1AAFF21F00CDC397 /* Roatan_Dive_SitesTests.m */; };
+		438124A71AAFF3D800CDC397 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124A61AAFF3D800CDC397 /* GoogleMaps.framework */; };
+		438124A91AAFF44000CDC397 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 438124A81AAFF44000CDC397 /* GoogleMaps.bundle */; };
+		438124AB1AAFF47A00CDC397 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124AA1AAFF47A00CDC397 /* AVFoundation.framework */; };
+		438124AD1AAFF48200CDC397 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124AC1AAFF48200CDC397 /* CoreData.framework */; };
+		438124AF1AAFF48800CDC397 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124AE1AAFF48800CDC397 /* CoreLocation.framework */; };
+		438124B11AAFF49000CDC397 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124B01AAFF49000CDC397 /* CoreText.framework */; };
+		438124B31AAFF49700CDC397 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124B21AAFF49700CDC397 /* GLKit.framework */; };
+		438124B51AAFF4A100CDC397 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124B41AAFF4A100CDC397 /* ImageIO.framework */; };
+		438124B71AAFF4AE00CDC397 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124B61AAFF4AE00CDC397 /* libc++.dylib */; };
+		438124B91AAFF4BD00CDC397 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124B81AAFF4BD00CDC397 /* libicucore.dylib */; };
+		438124BB1AAFF4C700CDC397 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124BA1AAFF4C700CDC397 /* libz.dylib */; };
+		438124BD1AAFF4D100CDC397 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124BC1AAFF4D100CDC397 /* OpenGLES.framework */; };
+		438124BF1AAFF4D900CDC397 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124BE1AAFF4D900CDC397 /* QuartzCore.framework */; };
+		438124C11AAFF4EA00CDC397 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 438124C01AAFF4EA00CDC397 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +54,20 @@
 		438124961AAFF21F00CDC397 /* Roatan Dive SitesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Roatan Dive SitesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4381249B1AAFF21F00CDC397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4381249C1AAFF21F00CDC397 /* Roatan_Dive_SitesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Roatan_Dive_SitesTests.m; sourceTree = "<group>"; };
+		438124A61AAFF3D800CDC397 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		438124A81AAFF44000CDC397 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		438124AA1AAFF47A00CDC397 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		438124AC1AAFF48200CDC397 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		438124AE1AAFF48800CDC397 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		438124B01AAFF49000CDC397 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		438124B21AAFF49700CDC397 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		438124B41AAFF4A100CDC397 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		438124B61AAFF4AE00CDC397 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		438124B81AAFF4BD00CDC397 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		438124BA1AAFF4C700CDC397 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		438124BC1AAFF4D100CDC397 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		438124BE1AAFF4D900CDC397 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		438124C01AAFF4EA00CDC397 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +75,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				438124C11AAFF4EA00CDC397 /* SystemConfiguration.framework in Frameworks */,
+				438124BF1AAFF4D900CDC397 /* QuartzCore.framework in Frameworks */,
+				438124BD1AAFF4D100CDC397 /* OpenGLES.framework in Frameworks */,
+				438124BB1AAFF4C700CDC397 /* libz.dylib in Frameworks */,
+				438124B91AAFF4BD00CDC397 /* libicucore.dylib in Frameworks */,
+				438124B71AAFF4AE00CDC397 /* libc++.dylib in Frameworks */,
+				438124B51AAFF4A100CDC397 /* ImageIO.framework in Frameworks */,
+				438124B31AAFF49700CDC397 /* GLKit.framework in Frameworks */,
+				438124B11AAFF49000CDC397 /* CoreText.framework in Frameworks */,
+				438124AF1AAFF48800CDC397 /* CoreLocation.framework in Frameworks */,
+				438124AD1AAFF48200CDC397 /* CoreData.framework in Frameworks */,
+				438124AB1AAFF47A00CDC397 /* AVFoundation.framework in Frameworks */,
+				438124A71AAFF3D800CDC397 /* GoogleMaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +104,20 @@
 		438124741AAFF21F00CDC397 = {
 			isa = PBXGroup;
 			children = (
+				438124C01AAFF4EA00CDC397 /* SystemConfiguration.framework */,
+				438124BE1AAFF4D900CDC397 /* QuartzCore.framework */,
+				438124BC1AAFF4D100CDC397 /* OpenGLES.framework */,
+				438124BA1AAFF4C700CDC397 /* libz.dylib */,
+				438124B81AAFF4BD00CDC397 /* libicucore.dylib */,
+				438124B61AAFF4AE00CDC397 /* libc++.dylib */,
+				438124B41AAFF4A100CDC397 /* ImageIO.framework */,
+				438124B21AAFF49700CDC397 /* GLKit.framework */,
+				438124B01AAFF49000CDC397 /* CoreText.framework */,
+				438124AE1AAFF48800CDC397 /* CoreLocation.framework */,
+				438124AC1AAFF48200CDC397 /* CoreData.framework */,
+				438124AA1AAFF47A00CDC397 /* AVFoundation.framework */,
+				438124A81AAFF44000CDC397 /* GoogleMaps.bundle */,
+				438124A61AAFF3D800CDC397 /* GoogleMaps.framework */,
 				4381247F1AAFF21F00CDC397 /* Roatan Dive Sites */,
 				438124991AAFF21F00CDC397 /* Roatan Dive SitesTests */,
 				4381247E1AAFF21F00CDC397 /* Products */,
@@ -202,6 +257,7 @@
 				4381248C1AAFF21F00CDC397 /* Main.storyboard in Resources */,
 				438124911AAFF21F00CDC397 /* LaunchScreen.xib in Resources */,
 				4381248E1AAFF21F00CDC397 /* Images.xcassets in Resources */,
+				438124A91AAFF44000CDC397 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,8 +401,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Roatan Dive Sites/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -355,8 +416,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Roatan Dive Sites/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
