@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DiveSiteMapController.h"
 
 @interface AppDelegate ()
 
@@ -14,12 +15,25 @@
 
 @implementation AppDelegate
 
+#define GOOGLE_MAPS_API_KEY @"AIzaSyAer6BCuKDyyS5wSkg7p_MSryPb0fKR_gk"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [GMSServices provideAPIKey:GOOGLE_MAPS_API_KEY];
     
-    [GMSServices provideAPIKey:@"AIzaSyAer6BCuKDyyS5wSkg7p_MSryPb0fKR_gk"];
-
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    DiveSiteMapController *viewController = [[DiveSiteMapController alloc] init];
+    
+    UINavigationController *navController =
+    [[UINavigationController alloc] initWithRootViewController:viewController];
+    
+    navController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    
+    self.window.rootViewController = navController;
+//    navController.
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

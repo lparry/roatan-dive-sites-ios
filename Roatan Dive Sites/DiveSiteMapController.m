@@ -1,8 +1,27 @@
-#import "ViewController.h"
-#import <GoogleMaps/GoogleMaps.h>
+#import "DiveSiteMapController.h"
 
-@implementation ViewController {
-    GMSMapView *mapView_;
+@interface DiveSiteMapController ()<GMSMapViewDelegate, UISearchBarDelegate> {
+    NSMutableArray *contentList;
+    NSMutableArray *filteredContentList;
+    BOOL isSearching;
+}
+
+@property(strong, nonatomic) GMSMapView *mapView;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+
+@end
+
+@implementation DiveSiteMapController
+
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil
+               bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = @"Dive Site Map";
+    }
+    return self;
 }
 
 - (GMSMarker*) makeMarkerForSite:(NSString *)name withLat:(double)lat withLng:(double)lng{
@@ -10,23 +29,42 @@
     marker.position = CLLocationCoordinate2DMake(lat, lng);
     marker.title = name;
     marker.snippet = @"foo";
-    marker.map = mapView_;
+    marker.map = self.mapView;
+    marker.icon = [UIImage imageNamed:@"turtle"];
+
     
     return marker;
 }
 
 
 - (void)viewDidLoad {
+    
+    
+    
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0f,0.0f,320.0f,0.0f)];
+    [self.searchBar sizeToFit];
+    self.navigationItem.titleView = self.searchBar;
+    self.navigationItem.titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.searchBar.placeholder = @"Search for a dive site...";
+    self.searchBar.delegate = self;
+
+    
     // Create a GMSCameraPosition that tells the map to display the
     // coordinate -33.86,151.20 at zoom level 6.
     // 16.304449, -86.594018
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:16.304449
                                                             longitude:-86.594018
                                                                  zoom:15];
-    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    mapView_.mapType = kGMSTypeHybrid;
-    mapView_.myLocationEnabled = YES;
-    self.view = mapView_;
+    self.mapView = [GMSMapView mapWithFrame:self.view.frame camera:camera];
+    self.mapView.mapType = kGMSTypeHybrid;
+    self.mapView.myLocationEnabled = YES;
+    self.mapView.delegate = self;
+    self.mapView.settings.rotateGestures = NO;
+    self.mapView.settings.tiltGestures = NO;
+    
+    [self.view addSubview: self.mapView];
+//    [self.view ];
+    NSLog(@" %i ", [[self.view subviews] count]);
     
     NSMutableArray *markers = [NSMutableArray arrayWithObjects:
                                nil];
@@ -165,6 +203,50 @@
 
 }
 
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+    self.mapView.padding = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, 0, 0);
+}
+
+// search bar hax
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self->isSearching = YES;
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+//    UISearch
+
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSLog(@"Text change - %d",isSearching);
+    
+    //Remove all objects first.
+    [filteredContentList removeAllObjects];
+    
+    if([searchText length] != 0) {
+        isSearching = YES;
+//        [self searchTableList];
+    }
+    else {
+        isSearching = NO;
+    }
+    // [self.tblContentList reloadData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"Cancel clicked");
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+    self.searchBar.text = nil;
+    [searchBar resignFirstResponder];
+
+}
+
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"Search submitted");
+   // [self searchTableList];
+}
 
 
 @end
