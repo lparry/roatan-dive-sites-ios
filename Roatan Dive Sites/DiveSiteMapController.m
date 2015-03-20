@@ -6,7 +6,6 @@
 
 @interface DiveSiteMapController ()<GMSMapViewDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
 
-    BOOL isSearching;
 }
 
 
@@ -227,6 +226,8 @@
     
     // Init a search controller with its table view controller for results.
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsTableViewController];
+    [self.searchController setDimsBackgroundDuringPresentation:NO];
+
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
     
@@ -253,12 +254,7 @@
 // search bar hax
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    self->isSearching = YES;
     [self.searchBar setShowsCancelButton:YES animated:YES];
-    //[self.searchResultsTableViewController.tableView sizeToFit];
-//    self.vie =  self.searchResultsTableViewController.tableView;
-    
-//    UISearch
 
 }
 
@@ -266,21 +262,28 @@
   //  NSLog(@"Text change - %d",isSearching);
     
     //Remove all objects first.
-    [self.results removeAllObjects];
+    //[self.results removeAllObjects];
     
     if([searchText length] != 0) {
-        isSearching = YES;
         [self searchTableList];
     }
     else {
-        isSearching = NO;
+        self.results = [self.tableData copy];
+        [self.searchResultsTableViewController.tableView reloadData];
     }
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [self.searchBar setShowsCancelButton:NO animated:YES];
     self.searchBar.text = nil;
+    [self.searchBar resignFirstResponder];
+
     [searchBar resignFirstResponder];
+    [ResultsTableView resignFirstResponder];
+    [ResultsTableView removeFromSuperview];
+    [self.searchController setDimsBackgroundDuringPresentation:NO];
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    
 
 }
 
@@ -309,7 +312,6 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier forIndexPath:indexPath];
 
     cell.textLabel.text = ((GMSMarker*)self.results[indexPath.row]).title;
- //   NSLog(@"%li %@", (long)indexPath.row, cell.textLabel.text);
     return cell;
 }
 
@@ -317,7 +319,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+
+    GMSMarker *marker = (GMSMarker*)self.results[indexPath.row];
+    [self searchBarCancelButtonClicked:self.searchBar];
+    [self.mapView setSelectedMarker:marker];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: marker.position.latitude
+                                                            longitude:marker.position.longitude
+                                                                 zoom:15];
+    [self.mapView animateToCameraPosition:camera];
+
+
 }
+
+
 
 #pragma mark - Search Results Updating
 
