@@ -17,8 +17,9 @@
 @property (strong, nonatomic) IBOutlet UISearchController *searchController;
 @property (strong, nonatomic) IBOutlet UITableViewController *searchResultsTableViewController;
 
+
 @property (strong, nonatomic) NSArray *tableData;
-@property (strong, nonatomic) NSArray *results;
+@property (strong, nonatomic) NSMutableArray *results;
 @property (strong, nonatomic) NSArray *markers;
 
 

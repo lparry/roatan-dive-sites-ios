@@ -30,7 +30,7 @@
 		438124CA1AB00F6000CDC397 /* turtle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 438124C81AB00F6000CDC397 /* turtle@2x.png */; };
 		438124CB1AB00F6000CDC397 /* turtle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 438124C91AB00F6000CDC397 /* turtle@3x.png */; };
 		43DB6E361ABBBAFB0066CD5B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43DB6E351ABBBAFB0066CD5B /* Default-568h@2x.png */; };
-		43F474411ABB7C9100DF1F3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43F4743F1ABB7C9100DF1F3E /* Main.storyboard */; };
+		43DB6E381ABBD8E70066CD5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43DB6E371ABBD8E70066CD5B /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +73,7 @@
 		438124C81AB00F6000CDC397 /* turtle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turtle@2x.png"; sourceTree = "<group>"; };
 		438124C91AB00F6000CDC397 /* turtle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turtle@3x.png"; sourceTree = "<group>"; };
 		43DB6E351ABBBAFB0066CD5B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		43F474401ABB7C9100DF1F3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		43DB6E371ABBD8E70066CD5B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +136,6 @@
 				438124871AAFF21F00CDC397 /* DiveSiteMapController.h */,
 				438124881AAFF21F00CDC397 /* DiveSiteMapController.m */,
 				4381248D1AAFF21F00CDC397 /* Images.xcassets */,
-				43F4743F1ABB7C9100DF1F3E /* Main.storyboard */,
 				438124801AAFF21F00CDC397 /* Supporting Files */,
 			);
 			path = "Roatan Dive Sites";
@@ -145,6 +144,7 @@
 		438124801AAFF21F00CDC397 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				43DB6E371ABBD8E70066CD5B /* Main.storyboard */,
 				438124811AAFF21F00CDC397 /* Info.plist */,
 				438124821AAFF21F00CDC397 /* main.m */,
 			);
@@ -279,10 +279,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F474411ABB7C9100DF1F3E /* Main.storyboard in Resources */,
 				438124CB1AB00F6000CDC397 /* turtle@3x.png in Resources */,
 				438124C71AB00E5300CDC397 /* turtle.png in Resources */,
 				4381248E1AAFF21F00CDC397 /* Images.xcassets in Resources */,
+				43DB6E381ABBD8E70066CD5B /* Main.storyboard in Resources */,
 				438124CA1AB00F6000CDC397 /* turtle@2x.png in Resources */,
 				43DB6E361ABBBAFB0066CD5B /* Default-568h@2x.png in Resources */,
 				438124A91AAFF44000CDC397 /* GoogleMaps.bundle in Resources */,
@@ -326,17 +326,6 @@
 			targetProxy = 438124971AAFF21F00CDC397 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		43F4743F1ABB7C9100DF1F3E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				43F474401ABB7C9100DF1F3E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4381249E1AAFF21F00CDC397 /* Debug */ = {

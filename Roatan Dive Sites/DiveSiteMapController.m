@@ -2,11 +2,10 @@
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 
-#define Identifier @"Cell"
+#define Identifier @"DiveSiteCell"
 
 @interface DiveSiteMapController ()<GMSMapViewDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
-    NSMutableArray *contentList;
-    NSMutableArray *filteredContentList;
+
     BOOL isSearching;
 }
 
@@ -209,21 +208,22 @@
         return [obj2.title localizedCaseInsensitiveCompare:obj1.title] == NSOrderedAscending;
     }];
 
-    NSLog(@"nonmutable %lu", (unsigned long)self.tableData.count);
+ //   NSLog(@"nonmutable %lu", (unsigned long)self.tableData.count);
 //    NSLog([[self.tableData objectAtIndex:1] class]);
-    self.results = [[NSMutableArray alloc] init];
-    
-    UITableView *searchResultsTableView = [[UITableView alloc] initWithFrame:self.view.frame];
-    searchResultsTableView.dataSource = self;
-    searchResultsTableView.delegate = self;
-    
-    // Registration of reuse identifiers.
-    [searchResultsTableView registerClass:UITableViewCell.class forCellReuseIdentifier:Identifier];
- //   [self.view registerClass:UITableViewCell.class forCellReuseIdentifier:Identifier];
+   // self.results = [[NSMutableArray alloc] init];
     
     // Init a search results table view controller and setting its table view.
     self.searchResultsTableViewController = [[UITableViewController alloc] init];
-    self.searchResultsTableViewController.tableView = searchResultsTableView;
+    
+    ResultsTableView = [[UITableView alloc] initWithFrame:self.view.frame];
+    ResultsTableView.dataSource = self;
+    ResultsTableView.delegate = self;
+    
+    // Registration of reuse identifiers.
+    [ResultsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier];
+
+    
+
     
     // Init a search controller with its table view controller for results.
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsTableViewController];
@@ -232,13 +232,9 @@
     
     
     // Make an appropriate size for search bar and add it as a header view for initial table view.
-//    [self.searchController.searchBar sizeToFit];
-//    self.tableView.tableHeaderView = self.searchController.searchBar;
-    
-//    self.searchBar = self.searchController.searchBar;
     [self.searchBar sizeToFit];
-    self.navigationItem.titleView = self.searchBar;
-    self.navigationItem.titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    self.navigationItem.titleView = self.searchBar;
+//    self.navigationItem.titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.searchBar.placeholder = @"Search for a dive site...";
     self.searchBar.delegate = self;
     
@@ -259,7 +255,7 @@
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     self->isSearching = YES;
     [self.searchBar setShowsCancelButton:YES animated:YES];
-    [self.searchResultsTableViewController.tableView sizeToFit];
+    //[self.searchResultsTableViewController.tableView sizeToFit];
 //    self.vie =  self.searchResultsTableViewController.tableView;
     
 //    UISearch
@@ -267,23 +263,21 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"Text change - %d",isSearching);
+  //  NSLog(@"Text change - %d",isSearching);
     
     //Remove all objects first.
-    [filteredContentList removeAllObjects];
+    [self.results removeAllObjects];
     
     if([searchText length] != 0) {
         isSearching = YES;
-//        [self searchTableList];
+        [self searchTableList];
     }
     else {
         isSearching = NO;
     }
-    // [self.tblContentList reloadData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"Cancel clicked");
     [self.searchBar setShowsCancelButton:NO animated:YES];
     self.searchBar.text = nil;
     [searchBar resignFirstResponder];
@@ -292,8 +286,7 @@
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"Search submitted");
-   // [self searchTableList];
+    [self searchTableList];
 }
 
 
@@ -304,18 +297,19 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"tabledata count %lu", (unsigned long)self.tableData.count);
+//    NSLog(@"tabledata count %lu", (unsigned long)self.tableData.count);
 //    NSLog(self.tableData[0]);
-    return self.tableData.count;
+    return self.results.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier forIndexPath:indexPath];
 
-    cell.textLabel.text = ((GMSMarker*)self.tableData[indexPath.row]).title;
-    NSLog(@"%li %@", (long)indexPath.row, cell.textLabel.text);
+    cell.textLabel.text = ((GMSMarker*)self.results[indexPath.row]).title;
+ //   NSLog(@"%li %@", (long)indexPath.row, cell.textLabel.text);
     return cell;
 }
 
@@ -328,25 +322,30 @@
 #pragma mark - Search Results Updating
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    UISearchBar *searchBar = searchController.searchBar;
+
+//    UISearchBar *searchBar = searchController.searchBar;
+    UISearchBar *searchBar = self.searchBar;
     if (searchBar.text.length > 0) {
         NSString *text = searchBar.text;
         
         NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSString *diveSite, NSDictionary *bindings) {
-            NSRange range = [diveSite rangeOfString:text options:NSCaseInsensitiveSearch];
-            
+
+            NSRange range = [[(GMSMarker*)diveSite title] rangeOfString:text options:NSCaseInsensitiveSearch];
+
             return range.location != NSNotFound;
         }];
         
         // Set up results.
-        NSArray *searchResults = [self.tableData filteredArrayUsingPredicate:predicate];
-        self.results = searchResults;
+        self.results = [[self.tableData filteredArrayUsingPredicate:predicate] mutableCopy];
         
         // Reload search table view.
         [self.searchResultsTableViewController.tableView reloadData];
     }
 }
 
+- (void) searchTableList {
+    [ self updateSearchResultsForSearchController:self.searchController];
+}
 
 
 
