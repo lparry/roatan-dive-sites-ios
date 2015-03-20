@@ -16,31 +16,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eH6-mn-j01">
+                            <searchBar contentMode="scaleToFill" fixedFrame="YES" placeholder="Poop" translatesAutoresizingMaskIntoConstraints="NO" id="DMf-73-rGY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="l13-bd-lY3"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="tw6-Du-RbJ"/>
                                 </connections>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="searchDisplayController" destination="gT6-1f-Jiu" id="d3D-n3-eZd"/>
+                        <outlet property="searchDisplayController" destination="bW3-Ui-ErM" id="5DS-K5-QV4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="gT6-1f-Jiu">
+                <searchDisplayController id="bW3-Ui-ErM">
                     <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="Hgy-KH-LZs"/>
-                        <outlet property="searchBar" destination="eH6-mn-j01" id="pzf-8d-hfC"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="Nku-TP-RBx"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="fcj-Zd-Bfm"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="zZ2-WH-Q1r"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="rQm-Tr-lGs"/>
+                        <outlet property="searchBar" destination="DMf-73-rGY" id="QWf-xG-lPY"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="yUf-0c-eWw"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="ZWl-Nx-F6Q"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="rma-I5-5bI"/>
                     </connections>
                 </searchDisplayController>
             </objects>
+            <point key="canvasLocation" x="258" y="39"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="XAv-eu-CKH">
+            <objects>
+                <tableViewController id="a7o-DX-4FZ" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hhx-46-Dac">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="m3c-zV-VuZ">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m3c-zV-VuZ" id="D6K-qa-7FW">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="a7o-DX-4FZ" id="OPW-eI-sok"/>
+                            <outlet property="delegate" destination="a7o-DX-4FZ" id="Rpl-od-cbM"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nU1-5B-ORh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="936" y="27"/>
         </scene>
     </scenes>
 </document>

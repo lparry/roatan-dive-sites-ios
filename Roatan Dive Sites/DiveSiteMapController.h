@@ -11,6 +11,5 @@
 
 @interface DiveSiteMapController : UIViewController
 
-
 @end
 

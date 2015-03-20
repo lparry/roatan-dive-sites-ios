@@ -31,7 +31,6 @@
     navController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     
     self.window.rootViewController = navController;
-//    navController.
     
     [self.window makeKeyAndVisible];
     return YES;
