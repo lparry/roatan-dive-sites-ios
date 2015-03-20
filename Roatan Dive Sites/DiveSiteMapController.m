@@ -10,15 +10,6 @@
     BOOL isSearching;
 }
 
-@property(strong, nonatomic) GMSMapView *mapView;
-@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
-
-@property (strong, nonatomic) UISearchController *searchController;
-@property (strong, nonatomic) UITableViewController *searchResultsTableViewController;
-
-@property (strong, nonatomic) NSArray *tableData;
-@property (strong, nonatomic) NSArray *results;
-@property (strong, nonatomic) NSArray *markers;
 
 
 @end
@@ -62,14 +53,17 @@
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:16.304449
                                                             longitude:-86.594018
                                                                  zoom:15];
-    self.mapView = [GMSMapView mapWithFrame:self.view.frame camera:camera];
+   // self.mapView = [GMSMapView mapWithFrame:self.view.frame camera:camera];
+//    [self.view setFrame:[[UIScreen mainScreen] bounds]];
+//    [self.mapView setFrame:self.view.frame];
+    [self.mapView setCamera:camera];
     self.mapView.mapType = kGMSTypeHybrid;
     self.mapView.myLocationEnabled = YES;
     self.mapView.delegate = self;
     self.mapView.settings.rotateGestures = NO;
     self.mapView.settings.tiltGestures = NO;
     
-    [self.view addSubview: self.mapView];
+ //   [self.view addSubview: self.mapView];
 //    [self.view addSubview: [UITableView ]];
     
 //    [self.view ];
@@ -215,7 +209,7 @@
         return [obj2.title localizedCaseInsensitiveCompare:obj1.title] == NSOrderedAscending;
     }];
 
-    NSLog(@"nonmutable %i", self.tableData.count);
+    NSLog(@"nonmutable %lu", (unsigned long)self.tableData.count);
 //    NSLog([[self.tableData objectAtIndex:1] class]);
     self.results = [[NSMutableArray alloc] init];
     
@@ -236,11 +230,12 @@
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
     
+    
     // Make an appropriate size for search bar and add it as a header view for initial table view.
 //    [self.searchController.searchBar sizeToFit];
 //    self.tableView.tableHeaderView = self.searchController.searchBar;
     
-    self.searchBar = self.searchController.searchBar;
+//    self.searchBar = self.searchController.searchBar;
     [self.searchBar sizeToFit];
     self.navigationItem.titleView = self.searchBar;
     self.navigationItem.titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -309,7 +304,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"tabledata count %i", self.tableData.count);
+    NSLog(@"tabledata count %lu", (unsigned long)self.tableData.count);
 //    NSLog(self.tableData[0]);
     return self.tableData.count;
 }
@@ -320,7 +315,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier forIndexPath:indexPath];
 
     cell.textLabel.text = ((GMSMarker*)self.tableData[indexPath.row]).title;
-    NSLog(@"%i %@", indexPath.row, cell.textLabel.text);
+    NSLog(@"%li %@", (long)indexPath.row, cell.textLabel.text);
     return cell;
 }
 

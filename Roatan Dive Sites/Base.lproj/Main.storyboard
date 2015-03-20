@@ -1,73 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OWC-0m-hA3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Dive Site Map Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="7zl-jg-jzR">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="DiveSiteMapController" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" id="OWC-0m-hA3" customClass="DiveSiteMapController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="ZT8-ZN-LGw"/>
+                        <viewControllerLayoutGuide type="bottom" id="wC7-MJ-At2"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="rp3-E7-C3J">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="scaleToFill" fixedFrame="YES" placeholder="Poop" translatesAutoresizingMaskIntoConstraints="NO" id="DMf-73-rGY">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="930-Y2-0S9" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <searchBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EBb-gs-brL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <rect key="contentStretch" x="1.3877787807814457e-17" y="0.0" width="1" height="1"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="tw6-Du-RbJ"/>
+                                    <outlet property="delegate" destination="OWC-0m-hA3" id="bHC-Sl-rFD"/>
                                 </connections>
                             </searchBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="bW3-Ui-ErM" id="5DS-K5-QV4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="bW3-Ui-ErM">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="rQm-Tr-lGs"/>
-                        <outlet property="searchBar" destination="DMf-73-rGY" id="QWf-xG-lPY"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="yUf-0c-eWw"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="ZWl-Nx-F6Q"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="rma-I5-5bI"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="258" y="39"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="XAv-eu-CKH">
-            <objects>
-                <tableViewController id="a7o-DX-4FZ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hhx-46-Dac">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="m3c-zV-VuZ">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m3c-zV-VuZ" id="D6K-qa-7FW">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" translatesAutoresizingMaskIntoConstraints="NO" id="83b-OE-CbW">
+                                <rect key="frame" x="0.0" y="218" width="320" height="44"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="83b-OE-CbW" id="Iln-V1-7kn">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="a7o-DX-4FZ" id="OPW-eI-sok"/>
-                            <outlet property="delegate" destination="a7o-DX-4FZ" id="Rpl-od-cbM"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nU1-5B-ORh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="83b-OE-CbW" firstAttribute="trailing" secondItem="EBb-gs-brL" secondAttribute="trailing" id="BP0-3A-6Ff"/>
+                            <constraint firstItem="930-Y2-0S9" firstAttribute="trailing" secondItem="EBb-gs-brL" secondAttribute="trailing" id="GbR-Ee-IpF"/>
+                            <constraint firstItem="EBb-gs-brL" firstAttribute="leading" secondItem="rp3-E7-C3J" secondAttribute="leading" id="R7c-01-9ej"/>
+                            <constraint firstItem="930-Y2-0S9" firstAttribute="bottom" secondItem="wC7-MJ-At2" secondAttribute="top" id="S5k-lp-Mk1"/>
+                            <constraint firstItem="83b-OE-CbW" firstAttribute="top" secondItem="EBb-gs-brL" secondAttribute="top" id="XEZ-8D-T8P"/>
+                            <constraint firstItem="83b-OE-CbW" firstAttribute="bottom" secondItem="EBb-gs-brL" secondAttribute="bottom" id="dNp-mK-001"/>
+                            <constraint firstAttribute="trailing" secondItem="EBb-gs-brL" secondAttribute="trailing" id="dP8-2K-AqD"/>
+                            <constraint firstItem="930-Y2-0S9" firstAttribute="top" secondItem="EBb-gs-brL" secondAttribute="bottom" id="eJ9-tx-CVe"/>
+                            <constraint firstItem="930-Y2-0S9" firstAttribute="leading" secondItem="EBb-gs-brL" secondAttribute="leading" id="kTD-kj-Q6g"/>
+                            <constraint firstItem="EBb-gs-brL" firstAttribute="top" secondItem="rp3-E7-C3J" secondAttribute="top" id="qbM-QR-Nir"/>
+                            <constraint firstItem="83b-OE-CbW" firstAttribute="leading" secondItem="EBb-gs-brL" secondAttribute="leading" id="zwK-aB-Xw0"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="930-Y2-0S9" id="Tw4-XA-KF6"/>
+                        <outlet property="searchBar" destination="EBb-gs-brL" id="mXp-uw-5Pp"/>
+                        <outlet property="searchDisplayController" destination="8QF-ed-Nmy" id="aHq-oL-dha"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rDZ-6k-Abp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="8QF-ed-Nmy">
+                    <connections>
+                        <outlet property="delegate" destination="OWC-0m-hA3" id="ban-zH-Yf8"/>
+                        <outlet property="searchBar" destination="EBb-gs-brL" id="X4c-EU-aBR"/>
+                        <outlet property="searchContentsController" destination="OWC-0m-hA3" id="Rvy-re-j6v"/>
+                        <outlet property="searchResultsDataSource" destination="OWC-0m-hA3" id="oWx-i2-ERy"/>
+                        <outlet property="searchResultsDelegate" destination="OWC-0m-hA3" id="2k7-no-SVm"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="936" y="27"/>
+            <point key="canvasLocation" x="314" y="29"/>
         </scene>
     </scenes>
 </document>
