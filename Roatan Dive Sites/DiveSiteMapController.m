@@ -8,8 +8,6 @@
 
 }
 
-
-
 @end
 
 @implementation DiveSiteMapController
@@ -40,20 +38,9 @@
 
 - (void)viewDidLoad {
     
-    
-    
-
-
-    
-    // Create a GMSCameraPosition that tells the map to display the
-    // coordinate -33.86,151.20 at zoom level 6.
-    // 16.304449, -86.594018
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:16.304449
                                                             longitude:-86.594018
                                                                  zoom:15];
-   // self.mapView = [GMSMapView mapWithFrame:self.view.frame camera:camera];
-//    [self.view setFrame:[[UIScreen mainScreen] bounds]];
-//    [self.mapView setFrame:self.view.frame];
     [self.mapView setCamera:camera];
     self.mapView.mapType = kGMSTypeHybrid;
     self.mapView.myLocationEnabled = YES;
@@ -61,11 +48,6 @@
     self.mapView.settings.rotateGestures = NO;
     self.mapView.settings.tiltGestures = NO;
     
- //   [self.view addSubview: self.mapView];
-//    [self.view addSubview: [UITableView ]];
-    
-//    [self.view ];
-   // NSLog(@" %i ", [[self.view subviews] count]);
     
     NSMutableArray *tempMarkers = [NSMutableArray arrayWithObjects:
                                nil];
@@ -207,8 +189,6 @@
         return [obj2.title localizedCaseInsensitiveCompare:obj1.title] == NSOrderedAscending;
     }];
 
- //   NSLog(@"nonmutable %lu", (unsigned long)self.tableData.count);
-//    NSLog([[self.tableData objectAtIndex:1] class]);
    // self.results = [[NSMutableArray alloc] init];
     
     // Init a search results table view controller and setting its table view.
@@ -232,15 +212,15 @@
     self.searchController.delegate = self;
     
     
+    
     // Make an appropriate size for search bar and add it as a header view for initial table view.
     [self.searchBar sizeToFit];
-//    self.navigationItem.titleView = self.searchBar;
-//    self.navigationItem.titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.searchBar.placeholder = @"Search for a dive site...";
     self.searchBar.delegate = self;
     
     // Enable presentation context.
     self.definesPresentationContext = YES;
+    self.searchController.definesPresentationContext = YES;
 
 
 }
@@ -259,32 +239,38 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-  //  NSLog(@"Text change - %d",isSearching);
-    
-    //Remove all objects first.
-    //[self.results removeAllObjects];
-    
-    if([searchText length] != 0) {
+   if([searchText length] != 0) {
         [self searchTableList];
     }
     else {
-        self.results = [self.tableData copy];
-        [self.searchResultsTableViewController.tableView reloadData];
+       // self.results = [self.tableData copy];
+       // [self.searchResultsTableViewController.tableView reloadData];
     }
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [self.searchBar setShowsCancelButton:NO animated:YES];
-    self.searchBar.text = nil;
-    [self.searchBar resignFirstResponder];
-
+- (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
-    [ResultsTableView resignFirstResponder];
-    [ResultsTableView removeFromSuperview];
-    [self.searchController setDimsBackgroundDuringPresentation:NO];
-    self.searchController.dimsBackgroundDuringPresentation = NO;
-    
+}
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+
+    //[searchBar setShowsCancelButton:NO animated:YES];
+    self.searchBar.text = nil;
+    [self.searchController setActive:NO];
+    
+    [searchBar resignFirstResponder];
+
+//    [self.view bringSubviewToFront:self.mapView];
+//
+//    [searchBar resignFirstResponder];
+//    [ResultsTableView resignFirstResponder];
+//    [ResultsTableView removeFromSuperview];
+//    [self.searchController setDimsBackgroundDuringPresentation:NO];
+//    self.searchController.dimsBackgroundDuringPresentation = NO;
+//    ResultsTableView.hidden = YES;
+//    NSLog(@"%i", self.searchController.isModalInPopover);
+
+    
 }
 
 
@@ -300,8 +286,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    NSLog(@"tabledata count %lu", (unsigned long)self.tableData.count);
-//    NSLog(self.tableData[0]);
     return self.results.count;
 }
 
@@ -321,7 +305,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:true];
 
     GMSMarker *marker = (GMSMarker*)self.results[indexPath.row];
-    [self searchBarCancelButtonClicked:self.searchBar];
+    
+    [self pressSearchBarCancelButton];
+    
     [self.mapView setSelectedMarker:marker];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: marker.position.latitude
                                                             longitude:marker.position.longitude
@@ -337,10 +323,8 @@
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
 
-//    UISearchBar *searchBar = searchController.searchBar;
-    UISearchBar *searchBar = self.searchBar;
-    if (searchBar.text.length > 0) {
-        NSString *text = searchBar.text;
+    if (self.searchBar.text.length > 0) {
+        NSString *text = self.searchBar.text;
         
         NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSString *diveSite, NSDictionary *bindings) {
 
@@ -361,6 +345,15 @@
     [ self updateSearchResultsForSearchController:self.searchController];
 }
 
-
+- (void) pressSearchBarCancelButton {
+    for (UIView *view in self.searchBar.subviews) {
+        for (id subview in view.subviews) {
+            if ( [subview isKindOfClass:[UIButton class]] ) {
+                [(UIButton*)subview sendActionsForControlEvents: UIControlEventTouchUpInside];
+                break;
+            }
+        }
+    }
+}
 
 @end
