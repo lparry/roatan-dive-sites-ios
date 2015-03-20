@@ -29,7 +29,7 @@
     marker.title = name;
     marker.snippet = @"foo";
     marker.map = self.mapView;
-    marker.icon = [UIImage imageNamed:@"turtle"];
+//    marker.icon = [UIImage imageNamed:@"turtle"];
 
     
     return marker;
@@ -276,6 +276,10 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self searchTableList];
+    if (self.results.count == 1) {
+        [self animateToMarker:(GMSMarker*)self.results[0]];
+
+    }
 }
 
 
@@ -303,17 +307,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
-
-    GMSMarker *marker = (GMSMarker*)self.results[indexPath.row];
     
-    [self pressSearchBarCancelButton];
-    
-    [self.mapView setSelectedMarker:marker];
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: marker.position.latitude
-                                                            longitude:marker.position.longitude
-                                                                 zoom:15];
-    [self.mapView animateToCameraPosition:camera];
-
+    [self animateToMarker:(GMSMarker*)self.results[indexPath.row]];
+  
 
 }
 
@@ -354,6 +350,20 @@
             }
         }
     }
+}
+
+- (void) animateToMarker:(GMSMarker*) marker {
+    [self pressSearchBarCancelButton];
+    
+    
+    [CATransaction begin];
+    [CATransaction setValue:[NSNumber numberWithFloat: 2] forKey:kCATransactionAnimationDuration];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: marker.position.latitude
+                                                            longitude:marker.position.longitude
+                                                                 zoom:16];
+    [self.mapView animateToCameraPosition: camera];
+    [CATransaction commit];
+    [self.mapView setSelectedMarker:marker];
 }
 
 @end
