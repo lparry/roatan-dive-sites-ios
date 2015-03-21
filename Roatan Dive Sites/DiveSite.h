@@ -21,6 +21,8 @@
 @property (strong, nonatomic) GMSMarker *marker;
 
 + (id)diveSiteWithName:(NSString *)type latitude:(NSNumber *)lat longitude:(NSNumber *)lng depth:(NSString *)depth mooringSystem:(NSString *)mooring_system;
+- (GMSCameraPosition *) cameraPosition;
+
 
 
 @end

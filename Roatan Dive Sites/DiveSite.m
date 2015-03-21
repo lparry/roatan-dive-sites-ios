@@ -32,5 +32,12 @@
 
 }
 
+- (GMSCameraPosition *) cameraPosition{
+    return [GMSCameraPosition cameraWithLatitude: [self.latitude doubleValue]
+                                       longitude: [self.longitude doubleValue]
+                                            zoom:16];
+
+}
+
 
 @end

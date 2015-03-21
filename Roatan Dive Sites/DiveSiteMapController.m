@@ -13,63 +13,49 @@
 
 @implementation DiveSiteMapController
 
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil
-               bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = @"Dive Site Map";
-    }
-    return self;
-}
-
-
-
-- (void)viewDidLoad {
-    
+- (void)initializeMapView {
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:16.304449
                                                             longitude:-86.594018
                                                                  zoom:15];
     [self.mapView setCamera:camera];
-    self.mapView.mapType = kGMSTypeHybrid;
+    [self.mapView setMapType: kGMSTypeHybrid];
     self.mapView.myLocationEnabled = YES;
-    self.mapView.delegate = self;
     self.mapView.settings.rotateGestures = NO;
     self.mapView.settings.tiltGestures = NO;
-    
-    
-    
+    self.mapView.delegate = self;
+
+}
+
+- (void)initializeDiveSites {
     NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"dive-sites" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:jsonPath];
     NSArray *siteData = [NSJSONSerialization JSONObjectWithData:data
-                                                options:kNilOptions
-                                                  error:nil];
+                                                        options:kNilOptions
+                                                          error:nil];
     
     NSMutableArray *mutableDiveSites = [NSMutableArray arrayWithObjects: nil];
     
     for (NSDictionary *data in siteData) {
-        [mutableDiveSites addObject: [DiveSite diveSiteWithName:data[@"name"]
-                                                  latitude:data[@"latitude"]
-                                                 longitude:data[@"longitude"]
-                                                     depth:data[@"depth"]
-                                            mooringSystem:data[@"mooring_system"]]];
+        DiveSite *newSite =
+         [DiveSite diveSiteWithName:data[@"name"]
+                           latitude:data[@"latitude"]
+                          longitude:data[@"longitude"]
+                              depth:data[@"depth"]
+                      mooringSystem:data[@"mooring_system"]];
+        newSite.marker.map = self.mapView;
 
+        [mutableDiveSites addObject: newSite];
     }
     
-
+    
     self.diveSites = mutableDiveSites;
-    mutableDiveSites = nil;
     
-    for (DiveSite *site in self.diveSites) {
-        site.marker.map = self.mapView;
-    }
-    
+}
+
+- (void)initializeSearchController {
     self.tableData = [self.diveSites sortedArrayUsingComparator:^NSComparisonResult(DiveSite *obj1, DiveSite *obj2) {
         return [obj2.name localizedCaseInsensitiveCompare:obj1.name] == NSOrderedAscending;
     }];
-
-   // self.results = [[NSMutableArray alloc] init];
     
     // Init a search results table view controller and setting its table view.
     self.searchResultsTableViewController = [[UITableViewController alloc] init];
@@ -81,17 +67,12 @@
     // Registration of reuse identifiers.
     [ResultsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier];
 
-    
-
-    
     // Init a search controller with its table view controller for results.
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultsTableViewController];
     [self.searchController setDimsBackgroundDuringPresentation:NO];
-
+    
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
-    
-    
     
     // Make an appropriate size for search bar and add it as a header view for initial table view.
     [self.searchBar sizeToFit];
@@ -101,8 +82,12 @@
     // Enable presentation context.
     self.definesPresentationContext = YES;
     self.searchController.definesPresentationContext = YES;
+}
 
-
+- (void)viewDidLoad {
+    [self initializeMapView];
+    [self initializeDiveSites];
+    [self initializeSearchController];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -131,7 +116,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     if (self.results.count == 1) {
-        [self animateToMarker:(GMSMarker *)((DiveSite *)self.results[0]).marker];
+        [self animateToDiveSite:self.results[0]];
 
     }
 }
@@ -162,7 +147,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     
-    [self animateToMarker:((DiveSite*)self.results[indexPath.row]).marker];
+    [self animateToDiveSite:self.results[indexPath.row]];
   
 
 }
@@ -206,18 +191,15 @@
     }
 }
 
-- (void) animateToMarker:(GMSMarker*) marker {
+- (void) animateToDiveSite:(DiveSite *) diveSite {
     [self pressSearchBarCancelButton];
     
     
     [CATransaction begin];
     [CATransaction setValue:[NSNumber numberWithFloat: 2] forKey:kCATransactionAnimationDuration];
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude: marker.position.latitude
-                                                            longitude:marker.position.longitude
-                                                                 zoom:16];
-    [self.mapView animateToCameraPosition: camera];
+    [self.mapView animateToCameraPosition: diveSite.cameraPosition];
     [CATransaction commit];
-    [self.mapView setSelectedMarker:marker];
+    [self.mapView setSelectedMarker:diveSite.marker];
 }
 
 @end
