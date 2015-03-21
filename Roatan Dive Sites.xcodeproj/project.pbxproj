@@ -29,6 +29,7 @@
 		438124C71AB00E5300CDC397 /* turtle.png in Resources */ = {isa = PBXBuildFile; fileRef = 438124C61AB00E5300CDC397 /* turtle.png */; };
 		438124CA1AB00F6000CDC397 /* turtle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 438124C81AB00F6000CDC397 /* turtle@2x.png */; };
 		438124CB1AB00F6000CDC397 /* turtle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 438124C91AB00F6000CDC397 /* turtle@3x.png */; };
+		43ABC1FF1ABDFC6100979CE5 /* dive-sites.json in Resources */ = {isa = PBXBuildFile; fileRef = 43ABC1FE1ABDFC6100979CE5 /* dive-sites.json */; };
 		43DB6E361ABBBAFB0066CD5B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43DB6E351ABBBAFB0066CD5B /* Default-568h@2x.png */; };
 		43DB6E381ABBD8E70066CD5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43DB6E371ABBD8E70066CD5B /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -51,7 +52,7 @@
 		438124851AAFF21F00CDC397 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		438124871AAFF21F00CDC397 /* DiveSiteMapController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiveSiteMapController.h; sourceTree = "<group>"; };
 		438124881AAFF21F00CDC397 /* DiveSiteMapController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiveSiteMapController.m; sourceTree = "<group>"; };
-		4381248D1AAFF21F00CDC397 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4381248D1AAFF21F00CDC397 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Roatan Dive Sites/Images.xcassets"; sourceTree = "<group>"; };
 		438124961AAFF21F00CDC397 /* Roatan Dive SitesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Roatan Dive SitesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4381249B1AAFF21F00CDC397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4381249C1AAFF21F00CDC397 /* Roatan_Dive_SitesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Roatan_Dive_SitesTests.m; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 		438124C61AB00E5300CDC397 /* turtle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turtle.png; sourceTree = "<group>"; };
 		438124C81AB00F6000CDC397 /* turtle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turtle@2x.png"; sourceTree = "<group>"; };
 		438124C91AB00F6000CDC397 /* turtle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turtle@3x.png"; sourceTree = "<group>"; };
+		43ABC1FE1ABDFC6100979CE5 /* dive-sites.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "dive-sites.json"; path = "Roatan Dive Sites/dive-sites.json"; sourceTree = "<group>"; };
 		43DB6E351ABBBAFB0066CD5B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		43DB6E371ABBD8E70066CD5B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,8 +112,7 @@
 		438124741AAFF21F00CDC397 = {
 			isa = PBXGroup;
 			children = (
-				43DB6E351ABBBAFB0066CD5B /* Default-568h@2x.png */,
-				4384AF021AB8DA4E00EF506F /* Images */,
+				4384AF021AB8DA4E00EF506F /* Resources */,
 				4384AF011AB8DA3A00EF506F /* Frameworks */,
 				4381247F1AAFF21F00CDC397 /* Roatan Dive Sites */,
 				438124991AAFF21F00CDC397 /* Roatan Dive SitesTests */,
@@ -135,7 +136,6 @@
 				438124851AAFF21F00CDC397 /* AppDelegate.m */,
 				438124871AAFF21F00CDC397 /* DiveSiteMapController.h */,
 				438124881AAFF21F00CDC397 /* DiveSiteMapController.m */,
-				4381248D1AAFF21F00CDC397 /* Images.xcassets */,
 				438124801AAFF21F00CDC397 /* Supporting Files */,
 			);
 			path = "Roatan Dive Sites";
@@ -189,14 +189,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4384AF021AB8DA4E00EF506F /* Images */ = {
+		4384AF021AB8DA4E00EF506F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4381248D1AAFF21F00CDC397 /* Images.xcassets */,
+				43DB6E351ABBBAFB0066CD5B /* Default-568h@2x.png */,
+				43ABC1FE1ABDFC6100979CE5 /* dive-sites.json */,
 				438124C81AB00F6000CDC397 /* turtle@2x.png */,
 				438124C91AB00F6000CDC397 /* turtle@3x.png */,
 				438124C61AB00E5300CDC397 /* turtle.png */,
 			);
-			name = Images;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +286,7 @@
 				438124C71AB00E5300CDC397 /* turtle.png in Resources */,
 				4381248E1AAFF21F00CDC397 /* Images.xcassets in Resources */,
 				43DB6E381ABBD8E70066CD5B /* Main.storyboard in Resources */,
+				43ABC1FF1ABDFC6100979CE5 /* dive-sites.json in Resources */,
 				438124CA1AB00F6000CDC397 /* turtle@2x.png in Resources */,
 				43DB6E361ABBBAFB0066CD5B /* Default-568h@2x.png in Resources */,
 				438124A91AAFF44000CDC397 /* GoogleMaps.bundle in Resources */,
