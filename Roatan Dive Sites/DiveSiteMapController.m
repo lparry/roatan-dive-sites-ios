@@ -1,4 +1,5 @@
 #import "DiveSiteMapController.h"
+#import "DiveSite.h"
 
 #define ResultsTableView self.searchResultsTableViewController.tableView
 
@@ -23,17 +24,6 @@
     return self;
 }
 
-- (GMSMarker*) makeMarkerForSite:(NSString *)name withLat:(NSNumber *)lat withLng:(NSNumber *)lng{
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake([lat doubleValue], [lng doubleValue]);
-    marker.title = name;
-    marker.snippet = @"extra data goes here";
-    marker.map = self.mapView;
-//    marker.icon = [UIImage imageNamed:@"turtle"];
-
-    
-    return marker;
-}
 
 
 - (void)viewDidLoad {
@@ -49,8 +39,6 @@
     self.mapView.settings.tiltGestures = NO;
     
     
-    NSMutableArray *tempMarkers = [NSMutableArray arrayWithObjects:
-                               nil];
     
     NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"dive-sites" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:jsonPath];
@@ -58,19 +46,27 @@
                                                 options:kNilOptions
                                                   error:nil];
     
+    NSMutableArray *mutableDiveSites = [NSMutableArray arrayWithObjects: nil];
+    
     for (NSDictionary *data in siteData) {
-        [tempMarkers addObject: [self makeMarkerForSite: data[@"name"]
-                                                withLat: (NSNumber *)data[@"latitude"]
-                                                withLng: (NSNumber *)data[@"longitude"]]];
+        [mutableDiveSites addObject: [DiveSite diveSiteWithName:data[@"name"]
+                                                  latitude:data[@"latitude"]
+                                                 longitude:data[@"longitude"]
+                                                     depth:data[@"depth"]
+                                            mooringSystem:data[@"mooring_system"]]];
 
     }
     
 
-    self.markers = tempMarkers;
-    tempMarkers = nil;
+    self.diveSites = mutableDiveSites;
+    mutableDiveSites = nil;
     
-    self.tableData = [self.markers sortedArrayUsingComparator:^NSComparisonResult(GMSMarker *obj1, GMSMarker *obj2) {
-        return [obj2.title localizedCaseInsensitiveCompare:obj1.title] == NSOrderedAscending;
+    for (DiveSite *site in self.diveSites) {
+        site.marker.map = self.mapView;
+    }
+    
+    self.tableData = [self.diveSites sortedArrayUsingComparator:^NSComparisonResult(DiveSite *obj1, DiveSite *obj2) {
+        return [obj2.name localizedCaseInsensitiveCompare:obj1.name] == NSOrderedAscending;
     }];
 
    // self.results = [[NSMutableArray alloc] init];
@@ -126,42 +122,16 @@
    if([searchText length] != 0) {
         [self searchTableList];
     }
-    else {
-       // self.results = [self.tableData copy];
-       // [self.searchResultsTableViewController.tableView reloadData];
-    }
-}
-
-- (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar{
-    [searchBar resignFirstResponder];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-
-    //[searchBar setShowsCancelButton:NO animated:YES];
-    self.searchBar.text = nil;
     [self.searchController setActive:NO];
-    
-    [searchBar resignFirstResponder];
-
-//    [self.view bringSubviewToFront:self.mapView];
-//
-//    [searchBar resignFirstResponder];
-//    [ResultsTableView resignFirstResponder];
-//    [ResultsTableView removeFromSuperview];
-//    [self.searchController setDimsBackgroundDuringPresentation:NO];
-//    self.searchController.dimsBackgroundDuringPresentation = NO;
-//    ResultsTableView.hidden = YES;
-//    NSLog(@"%i", self.searchController.isModalInPopover);
-
-    
 }
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [self searchTableList];
     if (self.results.count == 1) {
-        [self animateToMarker:(GMSMarker*)self.results[0]];
+        [self animateToMarker:(GMSMarker *)((DiveSite *)self.results[0]).marker];
 
     }
 }
@@ -183,7 +153,7 @@
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:Identifier];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier forIndexPath:indexPath];
 
-    cell.textLabel.text = ((GMSMarker*)self.results[indexPath.row]).title;
+    cell.textLabel.text = ((DiveSite *)self.results[indexPath.row]).name;
     return cell;
 }
 
@@ -192,7 +162,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     
-    [self animateToMarker:(GMSMarker*)self.results[indexPath.row]];
+    [self animateToMarker:((DiveSite*)self.results[indexPath.row]).marker];
   
 
 }
@@ -208,7 +178,7 @@
         
         NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSString *diveSite, NSDictionary *bindings) {
 
-            NSRange range = [[(GMSMarker*)diveSite title] rangeOfString:text options:NSCaseInsensitiveSearch];
+            NSRange range = [((DiveSite*)diveSite).name rangeOfString:text options:NSCaseInsensitiveSearch];
 
             return range.location != NSNotFound;
         }];

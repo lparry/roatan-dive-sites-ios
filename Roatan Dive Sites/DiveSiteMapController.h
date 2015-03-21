@@ -20,7 +20,7 @@
 
 @property (strong, nonatomic) NSArray *tableData;
 @property (strong, nonatomic) NSMutableArray *results;
-@property (strong, nonatomic) NSArray *markers;
+@property (strong, nonatomic) NSArray *diveSites;
 
 
 

@@ -30,6 +30,7 @@
 		438124CA1AB00F6000CDC397 /* turtle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 438124C81AB00F6000CDC397 /* turtle@2x.png */; };
 		438124CB1AB00F6000CDC397 /* turtle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 438124C91AB00F6000CDC397 /* turtle@3x.png */; };
 		43ABC1FF1ABDFC6100979CE5 /* dive-sites.json in Resources */ = {isa = PBXBuildFile; fileRef = 43ABC1FE1ABDFC6100979CE5 /* dive-sites.json */; };
+		43ABC2011ABE139100979CE5 /* DiveSite.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ABC2001ABE139100979CE5 /* DiveSite.m */; };
 		43DB6E361ABBBAFB0066CD5B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43DB6E351ABBBAFB0066CD5B /* Default-568h@2x.png */; };
 		43DB6E381ABBD8E70066CD5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43DB6E371ABBD8E70066CD5B /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,8 @@
 		438124C81AB00F6000CDC397 /* turtle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turtle@2x.png"; sourceTree = "<group>"; };
 		438124C91AB00F6000CDC397 /* turtle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turtle@3x.png"; sourceTree = "<group>"; };
 		43ABC1FE1ABDFC6100979CE5 /* dive-sites.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "dive-sites.json"; path = "Roatan Dive Sites/dive-sites.json"; sourceTree = "<group>"; };
+		43ABC2001ABE139100979CE5 /* DiveSite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiveSite.m; sourceTree = "<group>"; };
+		43ABC2021ABE13A700979CE5 /* DiveSite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiveSite.h; sourceTree = "<group>"; };
 		43DB6E351ABBBAFB0066CD5B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		43DB6E371ABBD8E70066CD5B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +140,8 @@
 				438124871AAFF21F00CDC397 /* DiveSiteMapController.h */,
 				438124881AAFF21F00CDC397 /* DiveSiteMapController.m */,
 				438124801AAFF21F00CDC397 /* Supporting Files */,
+				43ABC2021ABE13A700979CE5 /* DiveSite.h */,
+				43ABC2001ABE139100979CE5 /* DiveSite.m */,
 			);
 			path = "Roatan Dive Sites";
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 			files = (
 				438124891AAFF21F00CDC397 /* DiveSiteMapController.m in Sources */,
 				438124861AAFF21F00CDC397 /* AppDelegate.m in Sources */,
+				43ABC2011ABE139100979CE5 /* DiveSite.m in Sources */,
 				438124831AAFF21F00CDC397 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
