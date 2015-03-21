@@ -17,7 +17,9 @@
     newSite.latitude = lat;
     newSite.longitude = lng;
     newSite.depth = depth;
-    newSite.mooring_system = mooring_system;
+    newSite.mooringSystem = mooring_system;
+    [newSite calculateDepths];
+
     [newSite makeMarkerForSite];
     
     return newSite;
@@ -27,7 +29,7 @@
     self.marker = [[GMSMarker alloc] init];
     self.marker.position = CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longitude doubleValue]);
     self.marker.title = self.name;
-    self.marker.snippet = self.mooring_system;
+    self.marker.snippet = [self stringForSnippet];
     //    self.marker.icon = [UIImage imageNamed:@"turtle"];
 
 }
@@ -37,6 +39,44 @@
                                        longitude: [self.longitude doubleValue]
                                             zoom:16];
 
+}
+
+- (NSString *) stringForSnippet{
+    NSString *string = @"\n";
+    
+    if (self.depthInFeet != 0) {
+        string = [string  stringByAppendingFormat: @"%ldM / %ldft, ", (long)self.depthInMetres, (long)self.depthInFeet];
+    }else{
+        string = [string stringByAppendingString: @"Unknown depth, "];
+    }
+    
+    if ([self.mooringSystem length] > 0){
+     string = [string  stringByAppendingFormat: @"%@ mooring", self.mooringSystem];
+    }else{
+        string = [string stringByAppendingString: @"Unknown mooring"];
+    }
+    
+    string = [string  stringByAppendingFormat: @"\n\nGPS: %@, %@", self.latitude, self.longitude];
+
+    return string;
+}
+
+- (void) calculateDepths {
+    // Intermediate
+    NSString *numberString;
+    
+    NSScanner *scanner = [NSScanner scannerWithString:self.depth];
+    NSCharacterSet *numbers = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    
+    // Throw away characters before the first number.
+    [scanner scanUpToCharactersFromSet:numbers intoString:NULL];
+    
+    // Collect numbers.
+    [scanner scanCharactersFromSet:numbers intoString:&numberString];
+    
+    // Result.
+    self.depthInFeet = [numberString integerValue];
+    self.depthInMetres = self.depthInFeet / 3.28084;
 }
 
 

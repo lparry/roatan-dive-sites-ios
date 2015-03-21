@@ -17,14 +17,15 @@
 @property (strong, nonatomic) NSNumber *latitude;
 @property (strong, nonatomic) NSNumber *longitude;
 @property (strong, nonatomic) NSString *depth;
-@property (strong, nonatomic) NSString *mooring_system;
+@property (nonatomic) NSInteger depthInFeet;
+@property (nonatomic) NSInteger depthInMetres;
+@property (strong, nonatomic) NSString *mooringSystem;
 @property (strong, nonatomic) GMSMarker *marker;
 
 + (id)diveSiteWithName:(NSString *)type latitude:(NSNumber *)lat longitude:(NSNumber *)lng depth:(NSString *)depth mooringSystem:(NSString *)mooring_system;
 - (GMSCameraPosition *) cameraPosition;
 
-
-
 @end
+
 
 #endif
