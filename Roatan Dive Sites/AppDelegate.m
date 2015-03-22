@@ -18,22 +18,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [GMSServices provideAPIKey:GOOGLE_MAPS_API_KEY];
-//    
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    
-//    DiveSiteMapController *viewController = [[DiveSiteMapController alloc] init];
-//    
-//    UINavigationController *navController =
-//    [[UINavigationController alloc] initWithRootViewController:viewController];
-//    
-//    navController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-//    
-//    self.window.rootViewController = navController;
-//    
-//    [self.window makeKeyAndVisible];
-//    [self.window setFrame:[[UIScreen mainScreen] bounds]];
-//    [self.window makeKeyAndVisible]
     return YES;
 }
 
