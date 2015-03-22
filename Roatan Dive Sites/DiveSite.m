@@ -43,6 +43,9 @@
 
 - (NSString *) stringForSnippet{
     NSString *string = @"\n";
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setMaximumFractionDigits:6];
+    
     
     if (self.depthInFeet != 0) {
         string = [string  stringByAppendingFormat: @"%ldM / %ldft, ", (long)self.depthInMetres, (long)self.depthInFeet];
@@ -56,7 +59,7 @@
         string = [string stringByAppendingString: @"Unknown mooring"];
     }
     
-    string = [string  stringByAppendingFormat: @"\n\nGPS: %@, %@", self.latitude, self.longitude];
+    string = [string  stringByAppendingFormat: @"\n\nGPS: %@, %@", [formatter stringFromNumber:self.latitude], [formatter stringFromNumber:self.longitude ]];
 
     return string;
 }
