@@ -14,7 +14,7 @@
 
 @implementation AppDelegate
 
-#define GOOGLE_MAPS_API_KEY @"AIzaSyAer6BCuKDyyS5wSkg7p_MSryPb0fKR_gk"
+#define GOOGLE_MAPS_API_KEY @"AIzaSyBsNsrKa_jMU72sajP3vuM_Ckd9ytPr_xE"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [GMSServices provideAPIKey:GOOGLE_MAPS_API_KEY];
