@@ -65,7 +65,6 @@
 }
 
 - (void) calculateDepths {
-    // Intermediate
     NSString *numberString;
     
     NSScanner *scanner = [NSScanner scannerWithString:self.depth];

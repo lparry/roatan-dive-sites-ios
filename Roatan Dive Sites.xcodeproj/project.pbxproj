@@ -137,11 +137,11 @@
 			children = (
 				438124841AAFF21F00CDC397 /* AppDelegate.h */,
 				438124851AAFF21F00CDC397 /* AppDelegate.m */,
+				43ABC2021ABE13A700979CE5 /* DiveSite.h */,
+				43ABC2001ABE139100979CE5 /* DiveSite.m */,
 				438124871AAFF21F00CDC397 /* DiveSiteMapController.h */,
 				438124881AAFF21F00CDC397 /* DiveSiteMapController.m */,
 				438124801AAFF21F00CDC397 /* Supporting Files */,
-				43ABC2021ABE13A700979CE5 /* DiveSite.h */,
-				43ABC2001ABE139100979CE5 /* DiveSite.m */,
 			);
 			path = "Roatan Dive Sites";
 			sourceTree = "<group>";
