@@ -13,7 +13,7 @@
 + (id)diveSiteWithName:(NSString *)name latitude:(NSNumber *)lat longitude:(NSNumber *)lng depth:(NSString *)depth mooringSystem:(NSString *)mooring_system {
     
     DiveSite *newSite = [[self alloc] init];
-    newSite.name = name;
+    newSite.name = [name capitalizedString];
     newSite.latitude = lat;
     newSite.longitude = lng;
     newSite.depth = depth;
