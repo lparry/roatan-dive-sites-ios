@@ -16,9 +16,8 @@
     newSite.name = [name capitalizedString];
     newSite.latitude = lat;
     newSite.longitude = lng;
-    newSite.depth = depth;
     newSite.mooringSystem = mooring_system;
-    [newSite calculateDepths];
+    [newSite calculateDepths: depth];
 
     [newSite makeMarkerForSite];
     
@@ -64,10 +63,10 @@
     return string;
 }
 
-- (void) calculateDepths {
+- (void) calculateDepths: (NSString *)depthString {
     NSString *numberString;
     
-    NSScanner *scanner = [NSScanner scannerWithString:self.depth];
+    NSScanner *scanner = [NSScanner scannerWithString:depthString];
     NSCharacterSet *numbers = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
     
     // Throw away characters before the first number.

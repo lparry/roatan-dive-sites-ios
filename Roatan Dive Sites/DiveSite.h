@@ -16,7 +16,6 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSNumber *latitude;
 @property (strong, nonatomic) NSNumber *longitude;
-@property (strong, nonatomic) NSString *depth;
 @property (nonatomic) NSInteger depthInFeet;
 @property (nonatomic) NSInteger depthInMetres;
 @property (strong, nonatomic) NSString *mooringSystem;
