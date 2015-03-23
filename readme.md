@@ -9,13 +9,13 @@ types, or just those who like geeky maps.
 It should work on any iOS 8+ device if I can trust the simulator.
 
 
-![iPhone 4][iphone4]
+![iPhone 4S][iphone4s]
 
 ![iPhone 6][iphone6]
 
 ![iPad 2][ipad2]
 
-[iphone4]: screenshots/iphone4.png "Searching on an iPhone 4"
+[iphone4s]: screenshots/iphone4s.png "Searching on an iPhone 4S"
 [iphone6]: screenshots/iphone6.png "Displaying a marker on an iPhone 6"
 [ipad2]: screenshots/ipad2.png "Displaying a marker on an iPad 2"
 
