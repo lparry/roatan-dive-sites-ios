@@ -19,7 +19,8 @@
                                                                  zoom:15];
     [self.mapView setCamera:camera];
     [self.mapView setMapType: kGMSTypeHybrid];
-    self.mapView.myLocationEnabled = YES;
+    [self.mapView setMyLocationEnabled:YES];
+    [self.mapView setMinZoom:10 maxZoom:17];
     self.mapView.settings.rotateGestures = NO;
     self.mapView.settings.tiltGestures = NO;
     self.mapView.delegate = self;
