@@ -26,7 +26,7 @@
     [self.mapView setMinZoom:10 maxZoom:17];
     self.mapView.settings.rotateGestures = NO;
     self.mapView.settings.tiltGestures = NO;
-    self.mapView.settings.myLocationButton = YES;
+ //   self.mapView.settings.myLocationButton = YES;
     self.mapView.delegate = self;
 
 }
@@ -213,7 +213,6 @@
 
 - (void)enableMyLocation
 {
-    
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
 
     if (status == kCLAuthorizationStatusNotDetermined){
@@ -232,12 +231,11 @@
 {
     _locationAuthorizationManager = [[CLLocationManager alloc] init];
     _locationAuthorizationManager.delegate = self;
+    //    _locationAuthorizationManager.distanceFilter = kCLDistanceFilterNone;
+    //    _locationAuthorizationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     [_locationAuthorizationManager requestWhenInUseAuthorization];
-    _locationAuthorizationManager.distanceFilter = kCLDistanceFilterNone;
-    _locationAuthorizationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [_locationAuthorizationManager startUpdatingLocation];
-    NSLog(@"%f", _locationAuthorizationManager.location.coordinate.latitude);
+//    [_locationAuthorizationManager startUpdatingLocation];
 }
 
 // Handle the authorization callback. This is usually
