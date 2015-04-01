@@ -5,21 +5,24 @@
 
 #define Identifier @"DiveSiteCell"
 
-@interface DiveSiteMapController ()<GMSMapViewDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
-
+@interface DiveSiteMapController ()<GMSMapViewDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate> {
+    
+    CLLocationManager *_locationAuthorizationManager;
 }
+
 
 @end
 
 @implementation DiveSiteMapController
 
 - (void)initializeMapView {
+
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:16.304449
                                                             longitude:-86.594018
                                                                  zoom:15];
     [self.mapView setCamera:camera];
     [self.mapView setMapType: kGMSTypeHybrid];
-    [self.mapView setMyLocationEnabled:YES];
+    [self enableMyLocation];
     [self.mapView setMinZoom:10 maxZoom:17];
     self.mapView.settings.rotateGestures = NO;
     self.mapView.settings.tiltGestures = NO;
@@ -201,6 +204,47 @@
     [self.mapView animateToCameraPosition: diveSite.cameraPosition];
     [CATransaction commit];
     [self.mapView setSelectedMarker:diveSite.marker];
+}
+
+
+// Rather than setting -myLocationEnabled to YES directly,
+// call this method:
+
+- (void)enableMyLocation
+{
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+
+    if (status == kCLAuthorizationStatusNotDetermined){
+        [self requestLocationAuthorization];
+    }else if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted){
+        return; // we weren't allowed to show the user's location so don't enable
+    }else{
+        [self.mapView setMyLocationEnabled:YES];
+    }
+}
+
+// Ask the CLLocationManager for location authorization,
+// and be sure to retain the manager somewhere on the class
+
+- (void)requestLocationAuthorization
+{
+    _locationAuthorizationManager = [[CLLocationManager alloc] init];
+    _locationAuthorizationManager.delegate = self;
+    
+    [_locationAuthorizationManager requestWhenInUseAuthorization];
+}
+
+// Handle the authorization callback. This is usually
+// called on a background thread so go back to main.
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status != kCLAuthorizationStatusNotDetermined) {
+        [self performSelectorOnMainThread:@selector(enableMyLocation) withObject:nil waitUntilDone:[NSThread isMainThread]];
+        
+        _locationAuthorizationManager.delegate = nil;
+        _locationAuthorizationManager = nil;
+    }
 }
 
 @end
