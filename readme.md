@@ -6,8 +6,8 @@ search for specific sites by name. Useful for new dive masters on the island to
 get an idea where everything is in relation to each other, mooring depths and
 types, or just those who like geeky maps.
 
-It should work on any iOS 8+ device if I can trust the simulator.
-
+A big thanks to Nick from the Roatan Marine Park for the list of dive sites and
+GPS coordinates.
 
 ![iPhone 4S][iphone4s]
 
